@@ -11,5 +11,7 @@ public interface WorkerService {
 	public List<OutsourcedWorker> getWorkers();
 	
 	public Optional<OutsourcedWorker> getWorkerById(UUID uuid);
+	
+	public OutsourcedWorker createWorker(OutsourcedWorker outsourcedWorker);
 
 }

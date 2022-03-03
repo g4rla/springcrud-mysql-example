@@ -1,10 +1,14 @@
 package com.api.crud.mysql.models;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 import java.util.UUID;
 
 import com.api.crud.mysql.entities.OutsourcedWorkerEntity;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(NON_NULL)
 public class OutsourcedWorker {
 
 	@JsonProperty("id_outsourced_worker")
@@ -14,6 +18,8 @@ public class OutsourcedWorker {
 
 	@JsonProperty("outsourced_company")
 	private OutsourcedCompany outsourcedCompany;
+
+	private String message;
 	
 	public OutsourcedWorkerEntity toEntity() {
 		OutsourcedWorkerEntity entity = new OutsourcedWorkerEntity();
@@ -23,15 +29,14 @@ public class OutsourcedWorker {
 		return entity;
 	}
 
-	public OutsourcedWorker() {
+	public OutsourcedWorker() {}
 
-	}
-
-	public OutsourcedWorker(UUID idOutsourcedWorker, String name, OutsourcedCompany outsourcedCompany) {
+	public OutsourcedWorker(UUID idOutsourcedWorker, String name, OutsourcedCompany outsourcedCompany, String message) {
 		super();
 		this.idOutsourcedWorker = idOutsourcedWorker;
 		this.name = name;
 		this.outsourcedCompany = outsourcedCompany;
+		this.message = message;
 	}
 
 	public UUID getIdOutsourcedWorker() {
@@ -57,11 +62,19 @@ public class OutsourcedWorker {
 	public void setOutsourcedCompany(OutsourcedCompany outsourcedCompany) {
 		this.outsourcedCompany = outsourcedCompany;
 	}
-	
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	@Override
 	public String toString() {
 		return "OutsourcedWorker [idOutsourcedWorker=" + idOutsourcedWorker + ", name=" + name + ", outsourcedCompany="
-				+ outsourcedCompany + "]";
+				+ outsourcedCompany + ", message=" + message + "]";
 	}
-
+	
 }
